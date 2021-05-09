@@ -2,9 +2,9 @@
 
 ## Preparation
 
-For  running backend, see **Backend** [README.md](https://github.com/josse995/EurovisionTest/blob/main/Backend/README.md)
+For  running backend, see **Backend** [README.md](https://github.com/josse995/EurovisionTest/blob/main/Backend)
 
-For running frontend, see **Frontend** [README.md](https://github.com/josse995/EurovisionTest/blob/main/Frontend/README.md)
+For running frontend, see **Frontend** [README.md](https://github.com/josse995/EurovisionTest/blob/main/Frontend)
 
 
 ## MariaDB container with data for Eurovision Services Backend exercise
