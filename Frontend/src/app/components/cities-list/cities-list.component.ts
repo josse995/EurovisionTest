@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CitiesService } from 'src/app/services/cities.service';
+import { PageEvent } from '@angular/material/paginator'
+import { MatTableDataSource } from '@angular/material/table'
+import { City } from 'src/app/services/city';
 
 @Component({
   selector: 'app-cities-list',
@@ -8,26 +11,32 @@ import { CitiesService } from 'src/app/services/cities.service';
 })
 export class CitiesListComponent implements OnInit {
 
-  content: any;
+  cities: MatTableDataSource<City>;
 
-  page = 1;
-  count = 0;
-  pageSize = 3;
-  pageSizes = [3, 6, 9];
+  //MatPaginator Inputs
+  pageIndex: number = 0;
+  length: number;
+  pageSize: number = 5;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+
+  // MatPaginator Output
+  pageEvent: PageEvent
+
+  displayedColumns: string[] = ['id', 'name']
 
   constructor(private citiesService: CitiesService) { }
 
   ngOnInit(): void {
+    this.cities = new MatTableDataSource();
     this.retrieveCities();
   }
 
-  retrieveCities() {
-
-    this.citiesService.getAllCities(this.page, this.pageSize).subscribe(
+  private retrieveCities() {
+    this.citiesService.getAllCities(this.pageIndex, this.pageSize).subscribe(
       response => {
         const { content, totalElements, totalPages } = response;
-        this.content = content;
-        this.count = totalElements;
+        this.cities.data = content;
+        this.length = totalElements;
         console.log(response);
       },
       error => {
@@ -36,15 +45,20 @@ export class CitiesListComponent implements OnInit {
     )
   }
 
-  handlePageChange(event) {
-    this.page = event;
+  handlePageChange(event: PageEvent): PageEvent {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
     this.retrieveCities();
+    return event;
   }
 
-  handlePageSizeChange(event) {
-    this.pageSize = event.target.value;
-    this.page = 1;
-    this.retrieveCities();
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.cities.filter = filterValue.trim().toLowerCase();
+
+    if (this.cities.paginator) {
+      this.cities.paginator.firstPage();
+    }
   }
 
 }
