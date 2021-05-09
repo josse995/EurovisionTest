@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.11.
 
+## Preparation
+
+Open a terminal and go to ```./EurovisionTest/Frontend/``` path. Then, execute ```ng serve```.
+
 ## Routes
 
 Homepage: ```http://localhost:4200```
