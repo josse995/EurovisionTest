@@ -1,5 +1,14 @@
-#Steps to run backend and DB
-## Docker
+# Backend
+Backend is made with Spring Boot and Spring JPA.
+
+The database is MariaDB running in a docker.
+## Steps to run backend and DB
+
+### Backend
+
+1.- Open the project on IntelliJ and run BackendApplication -> main
+
+### Docker
 1.- From backend folder, execute the following command:
 ```
 docker-compose up -d
@@ -12,4 +21,3 @@ mysql -h 127.0.0.1 -uadmin -p
 ```
 *The password is on the Interview Exercise PDF
 
-2.- Open the project on IntelliJ and run BackendApplication -> main
