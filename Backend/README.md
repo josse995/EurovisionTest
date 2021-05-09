@@ -12,4 +12,4 @@ mysql -h 127.0.0.1 -uadmin -p
 ```
 *The password is on the Interview Exercise PDF
 
-2.- Open the project on IntelliJ and run BackendApplication
+2.- Open the project on IntelliJ and run BackendApplication -> main
